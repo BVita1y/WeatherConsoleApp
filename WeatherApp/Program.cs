@@ -38,31 +38,37 @@ namespace WeatherApp
         static async Task Main(string[] args)
         {
 
-            string answer = await GetJSONAsync("Izhevsk");
-            Console.WriteLine(answer);
+            Console.Write("Введите город: ");
+            string city = Console.ReadLine();
 
+            Console.WriteLine("\n=========================================================\n");
 
-            Console.WriteLine("\n\n");
-            Console.WriteLine("=========================================================");
-            Console.WriteLine("\n\n");
+            try
+            {
+                string answer = await GetJSONAsync(city);
 
-            OpenWeather ow = JsonConvert.DeserializeObject<OpenWeather>(answer);
+                Console.WriteLine(answer);
 
-            Console.WriteLine($"Город:\t\t\t {ow.name}");
+                Console.WriteLine("\n=========================================================\n");
 
-            Console.WriteLine($"Осадки: \t\t {ow.weather[0].main}");
+                OpenWeather ow = JsonConvert.DeserializeObject<OpenWeather>(answer);
 
-            Console.WriteLine($"Описание:\t\t {ow.weather[0].description}");
+                Console.WriteLine($"Город:\t\t\t {ow.name}");
+                Console.WriteLine($"Осадки: \t\t {ow.weather[0].main}");
+                Console.WriteLine($"Описание:\t\t {ow.weather[0].description}");
+                Console.WriteLine($"Средняя температура:\t {ow.main.Temp.ToString("0.##")}");
+                Console.WriteLine($"Скорость ветра:\t\t {ow.wind.speed} м/с");
+                Console.WriteLine($"Направление ветра:\t {ow.wind.deg}");
+                Console.WriteLine($"Влажность:\t\t {ow.main.humidity} %");
+                Console.WriteLine($"Давление:\t\t {((int)ow.main.Pressure)} мм рт.ст.");
 
-            Console.WriteLine($"Средняя температура:\t {ow.main.Temp.ToString("0.##")}");
-
-            Console.WriteLine($"Скорость ветра:\t\t {ow.wind.speed} м/с");
-
-            Console.WriteLine($"Направление ветра:\t {ow.wind.deg}");
-
-            Console.WriteLine($"Влажность:\t\t {ow.main.humidity} %");
-
-            Console.WriteLine($"Давление:\t\t {((int)ow.main.Pressure)} мм рт.ст.");
+                Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Кажется, произошла ошибка. Возможно, название города набрано с ошибкой.\n");
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
