@@ -38,13 +38,13 @@ namespace WeatherApp
         public static void ShowInfo(OpenWeather ow)
         {
             Console.WriteLine("\n=========================================================\n");
-            Console.WriteLine($"Город:\t\t\t {ow.name}");
-            Console.WriteLine($"Осадки: \t\t {ow.weather[0].main}");
-            Console.WriteLine($"Описание:\t\t {ow.weather[0].description}");
+            Console.WriteLine($"Город:\t\t\t {ow.Name}");
+            Console.WriteLine($"Осадки: \t\t {ow.weather[0].Main}");
+            Console.WriteLine($"Описание:\t\t {ow.weather[0].Description}");
             Console.WriteLine($"Средняя температура:\t {ow.main.Temp.ToString("0.##")}");
-            Console.WriteLine($"Скорость ветра:\t\t {ow.wind.speed} м/с");
-            Console.WriteLine($"Направление ветра:\t {ow.wind.deg}");
-            Console.WriteLine($"Влажность:\t\t {ow.main.humidity} %");
+            Console.WriteLine($"Скорость ветра:\t\t {ow.wind.Speed} м/с");
+            Console.WriteLine($"Направление ветра:\t {ow.wind.Deg}");
+            Console.WriteLine($"Влажность:\t\t {ow.main.Humidity} %");
             Console.WriteLine($"Давление:\t\t {((int)ow.main.Pressure)} мм рт.ст.");
 
             Console.ReadKey();

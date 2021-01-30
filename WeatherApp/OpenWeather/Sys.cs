@@ -1,18 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace WeatherApp
 {
     class Sys
     {
-        public double type;
-        public int id;
-        public double message;
+        [JsonProperty("type")]
+        public double Type { get; set; }
 
-        public string country;
-        public double sunrise;
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
-        public double sunset;
+        [JsonProperty("message")]
+        public double Message { get; set; }
+
+        [JsonProperty("country")]
+        public string Country { get; set; }
+
+        [JsonProperty("sunrise")]
+        public double Sunrise { get; set; }
+
+        [JsonProperty("sunset")]
+        public double Sunset { get; set; }
     }
 }

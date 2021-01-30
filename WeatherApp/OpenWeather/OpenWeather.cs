@@ -14,13 +14,13 @@ namespace WeatherApp
         public Weather[] weather;
 
         [JsonProperty("base")]
-        public string _base;
+        public string Base { get; set; }
 
         [JsonProperty("main")]
         public Main main;
 
         [JsonProperty("visibility")]
-        public double visibility;
+        public double Visibility { get; set; }
 
         [JsonProperty("wind")]
         public Wind wind;
@@ -29,20 +29,21 @@ namespace WeatherApp
         public Clouds clouds;
 
         [JsonProperty("dt")]
-        public double dt;
+        public double Dt { get; set; }
 
         [JsonProperty("sys")]
         public Sys sys;
 
-        public double timezone;
+        [JsonProperty("timezone")]
+        public double Timezone { get; set; }
 
         [JsonProperty("id")]
-        public int id;
+        public int Id { get; set; }
 
         [JsonProperty("name")]
-        public string name;
+        public string Name { get; set; }
 
         [JsonProperty("code")]
-        public int code;
+        public int Code { get; set; }
     }
 }
