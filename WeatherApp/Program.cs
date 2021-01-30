@@ -35,34 +35,36 @@ namespace WeatherApp
             return answer;
         }
 
+        public static void ShowInfo(OpenWeather ow)
+        {
+            Console.WriteLine("\n=========================================================\n");
+            Console.WriteLine($"Город:\t\t\t {ow.name}");
+            Console.WriteLine($"Осадки: \t\t {ow.weather[0].main}");
+            Console.WriteLine($"Описание:\t\t {ow.weather[0].description}");
+            Console.WriteLine($"Средняя температура:\t {ow.main.Temp.ToString("0.##")}");
+            Console.WriteLine($"Скорость ветра:\t\t {ow.wind.speed} м/с");
+            Console.WriteLine($"Направление ветра:\t {ow.wind.deg}");
+            Console.WriteLine($"Влажность:\t\t {ow.main.humidity} %");
+            Console.WriteLine($"Давление:\t\t {((int)ow.main.Pressure)} мм рт.ст.");
+
+            Console.ReadKey();
+        }
+
         static async Task Main(string[] args)
         {
 
             Console.Write("Введите город: ");
             string city = Console.ReadLine();
 
-            Console.WriteLine("\n=========================================================\n");
-
             try
             {
                 string answer = await GetJSONAsync(city);
 
-                Console.WriteLine(answer);
-
                 Console.WriteLine("\n=========================================================\n");
-
-                OpenWeather ow = JsonConvert.DeserializeObject<OpenWeather>(answer);
-
-                Console.WriteLine($"Город:\t\t\t {ow.name}");
-                Console.WriteLine($"Осадки: \t\t {ow.weather[0].main}");
-                Console.WriteLine($"Описание:\t\t {ow.weather[0].description}");
-                Console.WriteLine($"Средняя температура:\t {ow.main.Temp.ToString("0.##")}");
-                Console.WriteLine($"Скорость ветра:\t\t {ow.wind.speed} м/с");
-                Console.WriteLine($"Направление ветра:\t {ow.wind.deg}");
-                Console.WriteLine($"Влажность:\t\t {ow.main.humidity} %");
-                Console.WriteLine($"Давление:\t\t {((int)ow.main.Pressure)} мм рт.ст.");
-
-                Console.ReadKey();
+                Console.WriteLine(answer);
+                Console.WriteLine("\n=========================================================\n");
+                ShowInfo(JsonConvert.DeserializeObject<OpenWeather>(answer));
+                Console.WriteLine("\n=========================================================\n");               
             }
             catch (Exception e)
             {
